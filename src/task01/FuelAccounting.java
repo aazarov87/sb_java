@@ -8,27 +8,22 @@ public class FuelAccounting {
 
 // расход
     public static double getConsumption(String code){
-        if (code.equals("100"))
-            return 12.5;
-        else if (code.equals("200"))
-            return 12;
-        else if (code.equals("300"))
-            return 11.5;
-        else if (code.equals("400"))
-            return 20;
-        else
-            return 1;
+        return switch (code) {
+            case "100" -> 12.5;
+            case "200" -> 12;
+            case "300" -> 11.5;
+            case "400" -> 20;
+            default -> 1;
+        };
     }
 // стоимость литра
     public static double getPrice(String code){
-        if (code.equals("100"))
-            return 46.10;
-        else if (code.equals("300"))
-            return 47.50;
-        else if (code.equals("200") || code.equals("400"))
-            return 48.90;
-        else
-            return 1;
+        return switch (code) {
+            case "100" -> 46.10;
+            case "300" -> 47.50;
+            case "200", "400" -> 48.90;
+            default -> 1;
+        };
     }
 
     public static void main(String[] args) throws IOException {
@@ -72,18 +67,12 @@ public class FuelAccounting {
                 }
 
                 CostConsumption = Integer.parseInt(twoDimData[idxArray][2]) * getConsumption(codeCar) / 100 * getPrice(codeCar);
-                
-                if (codeCar.equals("100")){
-                    CastCons[0] += CostConsumption;
-                }
-                else if (codeCar.equals("200")) {
-                    CastCons[1] += CostConsumption;
-                }
-                else if (codeCar.equals("300")) {
-                    CastCons[2] += CostConsumption;
-                }
-                else if (codeCar.equals("400")) {
-                    CastCons[3] += CostConsumption;
+
+                switch (codeCar) {
+                    case "100" -> CastCons[0] += CostConsumption;
+                    case "200" -> CastCons[1] += CostConsumption;
+                    case "300" -> CastCons[2] += CostConsumption;
+                    case "400" -> CastCons[3] += CostConsumption;
                 }
 
                 idxArray += 1;
@@ -132,7 +121,7 @@ public class FuelAccounting {
                         )
                 )
                 {
-                    String dummy[] = twoDimData[in];
+                    String[] dummy = twoDimData[in];
                     twoDimData[in]= twoDimData[in+1];
                     twoDimData[in+1] = dummy;
                 }
@@ -150,12 +139,12 @@ public class FuelAccounting {
                 break;
 
             if (s.equals("100") || s.equals("200") || s.equals("300") || s.equals("400") || s.equals("all")) {
-                for (int i = 0; i < twoDimData.length; i++) {
-                    if (twoDimData[i][0].equals(s) || s.equals("all")){
+                for (String[] twoDimDatum : twoDimData) {
+                    if (twoDimDatum[0].equals(s) || s.equals("all")) {
                         String val;
-                        val = "C" + twoDimData[i][0] + "_" + twoDimData[i][1] + "-" + twoDimData[i][2];
-                        if (twoDimData[i][3] != null)
-                            val = val +  "-" + twoDimData[i][3];
+                        val = "C" + twoDimDatum[0] + "_" + twoDimDatum[1] + "-" + twoDimDatum[2];
+                        if (twoDimDatum[3] != null)
+                            val = val + "-" + twoDimDatum[3];
 
                         System.out.println(val);
                     }
