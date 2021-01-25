@@ -40,7 +40,7 @@ public class FuelAccounting {
         //C(CODE_CAR)_гос номер-Пробег-(доп. параметр)
         String[] InData  = new String[] {"C100_1-100", "C200_1-120-1200", "C300_1-120-30", "C400_1-80-20", "C100_2-50", "C200_2-40-1000", "C300_2-200-45", "C400_2-10-20", "C100_3-10", "C200_3-170-1100", "C300_3-150-29", "C400_3-100-28", "C100_1-300", "C200_1-100-750", "C300_1-32-15"};
         String[][] twoDimData = new String[InData.length][5]; // массив данных в разрезе каждого ТС
-        double[] CastCons = new double[4]; // данные по затратам в разрезе типа ТС
+        double[] CostCons = new double[4]; // данные по затратам в разрезе типа ТС
 
         for (String data : InData) {
             int idx;
@@ -69,10 +69,10 @@ public class FuelAccounting {
                 CostConsumption = Integer.parseInt(twoDimData[idxArray][2]) * getConsumption(codeCar) / 100 * getPrice(codeCar);
 
                 switch (codeCar) {
-                    case "100" -> CastCons[0] += CostConsumption;
-                    case "200" -> CastCons[1] += CostConsumption;
-                    case "300" -> CastCons[2] += CostConsumption;
-                    case "400" -> CastCons[3] += CostConsumption;
+                    case "100" -> CostCons[0] += CostConsumption;
+                    case "200" -> CostCons[1] += CostConsumption;
+                    case "300" -> CostCons[2] += CostConsumption;
+                    case "400" -> CostCons[3] += CostConsumption;
                 }
 
                 idxArray += 1;
@@ -81,24 +81,24 @@ public class FuelAccounting {
         }
 
         // общая стоимость + расход по каждому типу ТС
-        for (int i = 0; i < CastCons.length; i++) {
+        for (int i = 0; i < CostCons.length; i++) {
             String codeT = i+1+"00";
-            System.out.println("Расход для "+ codeT +" типа ТС "+ CastCons[i]);
-            allCostConsumption += CastCons[i];
+            System.out.println("Расход для "+ codeT +" типа ТС "+ CostCons[i]);
+            allCostConsumption += CostCons[i];
 
             if (i == 0) {
-                valMaxCost = CastCons[i];
-                valMinCost = CastCons[i];
+                valMaxCost = CostCons[i];
+                valMinCost = CostCons[i];
                 codeMaxCost = codeT;
                 codeMinCost = codeT;
             }
             else {
-                if (CastCons[i] > valMaxCost) {
-                    valMaxCost = CastCons[i];
+                if (CostCons[i] > valMaxCost) {
+                    valMaxCost = CostCons[i];
                     codeMaxCost = codeT;
                 }
-                if (CastCons[i] < valMinCost) {
-                    valMinCost = CastCons[i];
+                if (CostCons[i] < valMinCost) {
+                    valMinCost = CostCons[i];
                     codeMinCost = codeT;
                 }
             }
