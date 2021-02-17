@@ -5,10 +5,10 @@ import java.util.Collections;
 
 public class ArrayListTask02 {
 
-    public int[] ArrList;
+    public int[] arrList;
 
     public ArrayListTask02(int[] arr){
-        this.ArrList = arr;
+        this.arrList = arr;
     }
 
     private void printOut(int[] arr, boolean bReverce){
@@ -34,12 +34,12 @@ public class ArrayListTask02 {
     }
 
     public void print(){
-        printOut(ArrList, false);
+        printOut(arrList, false);
     }
 
     private int[] getSortArr(){
-        int[] arr = new int[ArrList.length];
-        System.arraycopy(ArrList, 0, arr, 0, ArrList.length);
+        int[] arr = new int[arrList.length];
+        System.arraycopy(arrList, 0, arr, 0, arrList.length);
 
         for (int out = arr.length - 1; out >= 1; out--){
             for (int in = 0; in < out; in++){
@@ -66,23 +66,23 @@ public class ArrayListTask02 {
     }
 
     public void addElement(int idx, int val){
-        if (idx > 0 && idx <= ArrList.length+1) {
-            int[] arrTemp = new int[ArrList.length + 1];
+        if (idx > 0 && idx <= arrList.length+1) {
+            int[] arrTemp = new int[arrList.length + 1];
 
-            if (idx == ArrList.length) {
+            if (idx == arrList.length) {
 
-                System.arraycopy(ArrList, 0, arrTemp, 0, ArrList.length);
-                arrTemp[ArrList.length] = val;
-                this.ArrList = arrTemp;
+                System.arraycopy(arrList, 0, arrTemp, 0, arrList.length);
+                arrTemp[arrList.length] = val;
+                this.arrList = arrTemp;
             }else{
-                System.arraycopy(ArrList, 0, arrTemp, 0, idx-1);
+                System.arraycopy(arrList, 0, arrTemp, 0, idx-1);
 
                 arrTemp[idx-1] = val;
 
-                System.arraycopy(ArrList, idx-1, arrTemp, idx, ArrList.length -idx + 1);
+                System.arraycopy(arrList, idx-1, arrTemp, idx, arrList.length -idx + 1);
 
-                ArrList = new int[arrTemp.length];
-                System.arraycopy(arrTemp, 0, ArrList, 0, arrTemp.length);
+                arrList = new int[arrTemp.length];
+                System.arraycopy(arrTemp, 0, arrList, 0, arrTemp.length);
             }
 
         } else
@@ -90,39 +90,39 @@ public class ArrayListTask02 {
     }
 
     public void addEndElement(int val){
-        addElement(ArrList.length, val);
+        addElement(arrList.length, val);
     }
 
     public void delElement(int idx){
-        if (idx > 0 && idx <= ArrList.length) {
-            int[] arrTemp = new int[ArrList.length-1];
+        if (idx > 0 && idx <= arrList.length) {
+            int[] arrTemp = new int[arrList.length-1];
 
             if (idx != 1)
-                System.arraycopy(ArrList, 0, arrTemp, 0, idx-1);
+                System.arraycopy(arrList, 0, arrTemp, 0, idx-1);
 
-            System.arraycopy(ArrList, idx, arrTemp, idx-1, ArrList.length-idx);
+            System.arraycopy(arrList, idx, arrTemp, idx-1, arrList.length-idx);
 
-            this.ArrList = arrTemp;
+            this.arrList = arrTemp;
         } else
             System.out.println("Индекс вне диапазона размера массива");
     }
 
     public void printSize(){
         System.out.println("Размер массива");
-        System.out.println(this.ArrList.length);
+        System.out.println(this.arrList.length);
     }
 
     public void setElement(int idx, int val){
-        if (idx > 0 && idx <= this.ArrList.length)
-            ArrList[idx-1] = val;
+        if (idx > 0 && idx <= this.arrList.length)
+            arrList[idx-1] = val;
         else
             System.out.println("Индекс вне диапазона размера массива");
     }
 
     public void maxElement(){
         int max = 0;
-        for(int i = 0; i < this.ArrList.length; i++) {
-            int val = (int) ArrList[i];
+        for(int i = 0; i < this.arrList.length; i++) {
+            int val = (int) arrList[i];
             if (max < val)
                 max = val;
         }
@@ -132,8 +132,8 @@ public class ArrayListTask02 {
 
     public void minElement(){
         int min = 0;
-        for(int i = 0; i < ArrList.length; i++) {
-            int val = (int) ArrList[i];
+        for(int i = 0; i < arrList.length; i++) {
+            int val = (int) arrList[i];
             if (i==0)
                 min = val;
             else {
@@ -146,7 +146,7 @@ public class ArrayListTask02 {
     }
 
     public void setAllElement(int val){
-        for(int i = 1; i <= ArrList.length; i++) {
+        for(int i = 1; i <= arrList.length; i++) {
             setElement(i, val);
         }
 
