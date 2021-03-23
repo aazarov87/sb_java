@@ -1,6 +1,7 @@
 package task04_5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class main {
@@ -50,17 +51,25 @@ public class main {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> arrPlayers = new ArrayList<>();
+        ArrayList<String> arrPlayers = new ArrayList<String>(Arrays.asList(new String[]{"Ivan 5"
+                                                                                        , "Petr 3"
+                                                                                        , "Alex 10"
+                                                                                        , "Petr 8"
+                                                                                        , "Ivan 6"
+                                                                                        , "Alex 5"
+                                                                                        , "Ivan 1"
+                                                                                        , "Alex 1"
+                                                                                        , "Petr 5"}));
 
-        arrPlayers.add("Ivan 5");
+        /*arrPlayers.add("Ivan 5");
         arrPlayers.add("Petr 3");
-        arrPlayers.add("Alex 6");
-        arrPlayers.add("Petr 7");
-        arrPlayers.add("Ivan 2");
-        arrPlayers.add("Alex 7");
-        arrPlayers.add("Ivan 8");
-        arrPlayers.add("Petr 7");
-        arrPlayers.add("Alex 3");
+        arrPlayers.add("Alex 10");
+        arrPlayers.add("Petr 8");
+        arrPlayers.add("Ivan 6");
+        arrPlayers.add("Alex 5");
+        arrPlayers.add("Ivan 1");
+        arrPlayers.add("Alex 1");
+        arrPlayers.add("Petr 5");*/
 
         System.out.println(getNamWinner(arrPlayers));
     }
